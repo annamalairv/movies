@@ -7,8 +7,8 @@ const NavLinks = () => {
   const [subHeading, setSubHeading] = useState("");
   return (
     <>
-      {links.map((link) => (
-        <div>
+      {links.map((link,i) => (
+        <div key={i.toString()}>
           <div className="px-3 text-left md:cursor-pointer group">
             <h1
               className="py-7 flex justify-between items-center md:pr-0 pr-5 group md:text-[#212529] text-white font-light"
@@ -39,13 +39,13 @@ const NavLinks = () => {
                     ></div>
                   </div>
                   <div className="bg-white p-5 gap-10">
-                    {link.sublinks.map((mysublinks) => (
-                      <div>
+                    {link.sublinks.map((mysublinks,is) => (
+                      <div  key={is.toString()}>
                         <h1 className="text-lg font-semibold">
                           {mysublinks.Head}
                         </h1>
-                        {mysublinks.sublink.map((slink) => (
-                          <li className="text-sm text-gray-600 my-2.5">
+                        {mysublinks.sublink.map((slink,isa) => (
+                          <li  key={isa.toString()}  className="text-sm text-gray-600 my-2.5">
                             <Link
                               to={slink.link}
                               className="hover:text-[#9352B3]"
@@ -68,8 +68,8 @@ const NavLinks = () => {
           `}
           >
             {/* sublinks */}
-            {link.sublinks.map((slinks) => (
-              <div>
+            {link.sublinks.map((slinks,ia) => (
+              <div  key={ia.toString()}>
                 <div>
                   {/* <h1
                     onClick={() =>
@@ -96,8 +96,8 @@ const NavLinks = () => {
                       subHeading === slinks.Head ? "md:hidden" : "hidden"
                     }`}
                   >
-                    {slinks.sublink.map((slink) => (
-                      <li className="py-3 pl-14 text-white">
+                    {slinks.sublink.map((slink,si) => (
+                      <li className="py-3 pl-14 text-white"  key={si.toString()}>
                         <Link to={slink.link}>{slink.name}</Link>
                       </li>
                     ))}
