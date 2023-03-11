@@ -292,16 +292,22 @@ async function restoreJSX(babel2, code, filename) {
   if (!reactAlias) {
     return jsxNotFound;
   }
-  const reactJsxRE = new RegExp("\\b" + reactAlias + "\\.(createElement|Fragment)\\b", "g");
   let hasCompiledJsx = false;
-  code = code.replace(reactJsxRE, (_, prop) => {
+  const fragmentPattern = `\\b${reactAlias}\\.Fragment\\b`;
+  const createElementPattern = `\\b${reactAlias}\\.createElement\\(\\s*([A-Z"'][\\w$.]*["']?)`;
+  code = code.replace(new RegExp(fragmentPattern, "g"), () => {
     hasCompiledJsx = true;
-    return "React." + prop;
+    return "React.Fragment";
+  }).replace(new RegExp(createElementPattern, "g"), (original, component) => {
+    if (/^[a-z][\w$]*$/.test(component)) {
+      return original;
+    }
+    hasCompiledJsx = true;
+    return "React.createElement(" + (component === "Fragment" ? "React.Fragment" : component);
   });
   if (!hasCompiledJsx) {
     return jsxNotFound;
   }
-  code = code.replace(/createElement\(Fragment,/g, "createElement(React.Fragment,");
   babelRestoreJSX || (babelRestoreJSX = Promise.resolve().then(() => (init_babel_restore_jsx(), babel_restore_jsx_exports)));
   const result = await babel2.transformAsync(code, {
     babelrc: false,

@@ -4,4 +4,49 @@
 @tailwind components;
 @tailwind utilities;
 
+.card {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
 
+.truncateText {
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.whenhovered {
+  position: absolute;
+  bottom: -100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 2;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.card:hover .whenhovered {
+  bottom: -0%;
+  /* background: rgba(0, 0, 0, 0.75); */
+}
+
+.viewMore{
+  /* visibility: hidden; */
+  position: absolute;
+  z-index: 2;
+  top:10px;
+  right: 12px;
+  top: -100%;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.card:hover .viewMore{
+  /* visibility: visible; */
+  top: 3%;
+}
