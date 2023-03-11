@@ -1,8 +1,15 @@
-import React from "react";
-import {API_IMG_W500} from "../constants/imageUrls"
+import {React,useContext} from "react";
+import {API_IMG_W500} from "../constants/imageUrls";
+import { GlobalContext } from "./context/GlobalState";
 
 const MovieCard = ({ movie ,onMovieSelect}) => {
     console.log(movie,"movie>>>");
+    const {MoviesDispatch , watched} = useContext(GlobalContext)
+
+  
+    const storedMovieWatched = watched.find((o)=> o.id === movie.id)
+    const alreadywatched = storedMovieWatched ? true : false      
+
 
     return (
         // <div className="rounded-2xl card flex-1 shadow text-white cursor-pointer" onClick={onMovieSelect}>
@@ -38,7 +45,7 @@ const MovieCard = ({ movie ,onMovieSelect}) => {
             alt="image"
         />
       <div class="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <button class="bg-black text-white py-2 px-5">Watch Now</button>
+        <button onClick={()=>MoviesDispatch({type : 'ADD_MOVIE_TO_WATCHED' , payload : movie })} class="bg-black text-white py-2 px-5">{alreadywatched?"watched":"watch Now"}</button>
       </div>
     </div>
 

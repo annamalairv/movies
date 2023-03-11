@@ -29,8 +29,8 @@ const Navbar = ({setQuery,setopen}) => {
         
           <NavLinks />
           <li>
-            <Link to="/" className="py-7 px-3 inline-block">
-              Contect us
+            <Link to="/watched" className="py-7 px-3 inline-block">
+              Watched
             </Link>
           </li>
         </ul>
