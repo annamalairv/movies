@@ -34,7 +34,8 @@ const MovieCard = ({ movie ,onMovieSelect}) => {
           <div className="relative overflow-hidden">
           <img
             className="object-cover w-full h-48"
-            src={API_IMG_W500 + movie.poster_path}
+            // src={API_IMG_W500 + movie.poster_path}
+            src={API_IMG_W500 + movie.backdrop_path}
             alt="image"
         />
       <div className="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
