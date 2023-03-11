@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { useParams } from "react-router-dom";
-import { API_IMG } from "../constants/imageUrls"
+import { API_IMG } from "../constants/imageUrls";
+import { GlobalContext } from "./context/GlobalState";
 
 
 export const MovieDetail = () => {
     const { movieId } = useParams();
     const [movieDetail, setMovieDetail] = useState({});
     const API_URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=1e448e0dfcdbb565f5d329820065b4d2`;
+    const { watched } = useContext(GlobalContext)
 
     useEffect(() => {
         if (movieId)
@@ -19,6 +21,7 @@ export const MovieDetail = () => {
                 })
 
     }, [movieId])
+    console.log(watched,"watched==>>>");
 
     return <div className="h-screen flex flex-col">
         {movieDetail.id ? <div className="w-full">
