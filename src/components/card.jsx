@@ -3,6 +3,7 @@ import {API_IMG_W500} from "../constants/imageUrls";
 import { GlobalContext } from "./context/GlobalState";
 
 const MovieCard = ({ movie ,onMovieSelect}) => {
+    // console.log(movie,"movie>>>");
     console.log(movie,"movie>>>");
     const {MoviesDispatch , watched} = useContext(GlobalContext)
 
@@ -38,7 +39,7 @@ const MovieCard = ({ movie ,onMovieSelect}) => {
         /////
         <div className="w-full m-10 rounded-lg group shadow-md lg:max-w-sm bg-white " >
           
-          <div class="relative overflow-hidden">
+          <div className="relative overflow-hidden">
           <img
             className="object-cover w-full h-48"
             src={API_IMG_W500 + movie.poster_path}
