@@ -1,32 +1,32 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/movify.png";
 
 import Button from "../Button";
 import NavLinks from "./NavLinks";
-const Navbar = ({setQuery,setopen}) => {
+const Navbar = ({ setQuery, setopen }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
 
+  const setSearchs = (event) => {
+    // console.log(event.target.value, "search>>>>>");
+    setQuery(event.target.value);
+  };
 
-
-  const setSearchs=(event)=>{
-    console.log(event.target.value,"search>>>>>");
-    setQuery(event.target.value)
-
-  }
-  
   return (
-    <nav className="bg-white">
-      <div className="flex items-center font-medium justify-between ">
+    <div className={`bg-white h-20`}>
+      {!search ? <div className="flex items-center font-medium justify-between">
         <div className=" p-5 md:w-auto w-full flex justify-between">
           <img src={Logo} alt="logo" className="md:cursor-pointer h-9 z-999" />
-          <div className={`text-3xl z-50 md:hidden ${open?"text-white":"text-black"}`} onClick={() => setOpen(!open)}>
+          <div
+            className={`text-3xl z-50 md:hidden ${open ? "text-white" : "text-black"
+              }`}
+            onClick={() => setOpen(!open)}
+          >
             <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon>
           </div>
         </div>
         <ul className="md:flex hidden uppercase items-center gap-8 font-[Poppins]">
-        
           <NavLinks />
           <li>
             <Link to="/" className="py-7 px-3 inline-block">
@@ -34,15 +34,12 @@ const Navbar = ({setQuery,setopen}) => {
             </Link>
           </li>
         </ul>
-        <div className="md:block hidden pl-30 text-2xl" >
-          {search?   <input
-                    type="text"
-                    className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-full focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    placeholder="Search..."
-                    onChange={setSearchs}
-                />: <ion-icon onClick={()=>setSearch(!search)} name="search-outline"></ion-icon>}
-         
-          </div>
+        <div className="md:block hidden pl-30 text-2xl">
+          <ion-icon
+            onClick={() => setSearch(true)}
+            name="search-outline"
+          ></ion-icon>
+        </div>
         <div className="md:block hidden mr-10">
           <Button setopens={setopen} />
         </div>
@@ -59,13 +56,21 @@ const Navbar = ({setQuery,setopen}) => {
             </Link>
           </li> */}
           <NavLinks />
-   
+
           <div className="py-5">
             <Button />
           </div>
         </ul>
-      </div>
-    </nav>
+      </div> : <div className="p-4 flex flex-row items-center " style={{ animation: `fadeIn 1000ms ease-out` }}><input
+        type="text"
+        className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-full focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+        placeholder="Search..."
+        onChange={setSearchs}
+      /> <div className="p-3 flex items-center"><ion-icon size="large"
+        onClick={() => setSearch(false)}
+        name="close"
+      ></ion-icon></div></div>}
+    </div>
   );
 };
 
