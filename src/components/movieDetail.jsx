@@ -22,17 +22,64 @@ export const MovieDetail = () => {
 
     }, [movieId])
     console.log(watched,"watched==>>>");
+    const arr=[1,2,3,4,5,6,7,8,9]
 
-    return <div className="h-screen flex flex-col">
-        {movieDetail.id ? <div className="w-full">
-            <div className="w-full relative">
-                <img
-                    className="object-fill w-full backdrop-blur-sm bg-black/30"
-                    src={API_IMG + movieDetail.backdrop_path}
-                    alt="image"
-                />
-                <div className="absolute bottom-5 backdrop-blur-sm bg-black/30 text-white px-2 text-xl md:text-3xl">{movieDetail.original_title}</div>
-            </div>
-        </div> : <div className="text-xl">Loading Details...</div>}
+    return(
+        <div>
+        <div className='w-full h-screen'>
+        <img
+          className='top-0 left-0 w-full h-screen object-cover'
+          src={API_IMG + movieDetail.backdrop_path}
+          alt='/'
+        />
+        <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
+        <div className='absolute top-0 w-full h-full flex flex-col justify-center text-white'>
+          <div className='md:left-[10%] max-w-[1100px] m-auto absolute p-4'>
+           
+            <h1 className='font-bold text-5xl md:text-7xl drop-shadow-2xl'>
+          {movieDetail.title}
+            </h1>
+            <p className='max-w-[600px] drop-shadow-2xl py-2 text-xl'>
+            {movieDetail.overview}
+            </p>
+            <button className='bg-red-600 text-white p-2 '>Watch Now</button>
+          </div>
+        </div>
+      </div>
+      {/* ////cast */}
+
+    <h1>Cast</h1>
+        <div className="scrollbar w-full scrollbar-thumb-primary  scrollbar-track-header">
+          <div className="flex items-center   gap-3 overflow-y-scroll">
+            {arr.map((cast, i) => (
+              <div className="flex-shrink-0   w-[200px] mb-6" key={i}>
+                <div
+    
+    className="group mx-3 my-1.5 cursor-pointer bg-black"
+  >
+    <div
+      className="
+        h-[200px]
+        relative
+        rounded-lg overflow-hidden
+    "
+    >
+  <img
+        className='top-0 left-0 w-full h-screen object-cover'
+        src={API_IMG + movieDetail.backdrop_path}
+        alt='/'
+      />
     </div>
+    <p className="py-1.5 text-white line-clamp-2">{movieDetail.title}</p>
+    </div>
+              </div>
+            ))}
+          </div>
+        </div>
+     
+      
+      {/* //// */}
+
+         </div>
+    )
 }
