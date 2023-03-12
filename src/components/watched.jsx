@@ -17,7 +17,7 @@ export const Watched=()=>{
           
     
           <img
-            className="object-cover w-full h-48"
+            className="rounded-lg w-auto"
             src={API_IMG_W500 + prop.poster_path}
             alt="image"
         />

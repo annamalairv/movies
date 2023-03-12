@@ -74,7 +74,7 @@ export const Home = () => {
       {/* Popular Movie Section */}
       <div className="">
         <div className="font-bold text-2xl  mx-10 mt-10">My Movies</div>
-        <div className="grid gap-8 container  relative  grid-cols-2 md:grid-cols-3  lg:grid-cols-3 xl:grid-cols-3 ">
+        <div className="grid gap-8 container  grid-cols-2 md:grid-cols-3  lg:grid-cols-3 xl:grid-cols-3 ">
           {movies.map((movie) => {
             return movie.backdrop_path ? (
               <MovieCard

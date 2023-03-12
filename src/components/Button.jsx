@@ -9,7 +9,7 @@ const Button = ({setopens}) => {
   }
   return (
   
-    <button className="bg-[#9352B3] text-white  px-6 py-2 rounded" onClick={openModal}>
+    <button className="bg-[#3e4555] text-white  px-6 py-2 rounded" onClick={openModal}>
       LogIn
     </button>
 

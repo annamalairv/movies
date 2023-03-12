@@ -19,6 +19,6 @@ function App() {
 }
 
 
-const NoPage = () => <div>sdcnsd</div>
+
 
 export default App;
