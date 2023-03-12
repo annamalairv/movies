@@ -4,7 +4,6 @@ import { GlobalContext } from "./context/GlobalState";
 
 const MovieCard = ({ movie ,onMovieSelect}) => {
     // console.log(movie,"movie>>>");
-    console.log(movie,"movie>>>");
     const {MoviesDispatch , watched} = useContext(GlobalContext)
 
   
@@ -46,8 +45,8 @@ const MovieCard = ({ movie ,onMovieSelect}) => {
             src={API_IMG_W500 + movie.backdrop_path}
             alt="image"
         />
-      <div class="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <button onClick={()=>MoviesDispatch({type : 'ADD_MOVIE_TO_WATCHED' , payload : movie })} class="bg-black text-white py-2 px-5">{alreadywatched?"watched":"watch Now"}</button>
+      <div className="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+        <button onClick={()=>MoviesDispatch({type : 'ADD_MOVIE_TO_WATCHED' , payload : movie })} className="bg-black text-white py-2 px-5">{alreadywatched?"watched":"watch Now"}</button>
       </div>
     </div>
 
